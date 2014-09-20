@@ -13,6 +13,9 @@ class ViewController: UIViewController {
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var messageView: UIImageView!
     @IBOutlet weak var feedView: UIImageView!
+    @IBOutlet weak var messageContainer: UIView!
+    
+    
     var originalImageCenter: CGPoint!
     var originalLocation: CGPoint!
     var state = ""
@@ -64,12 +67,15 @@ class ViewController: UIViewController {
                 
                 if (dragDifference < 60) {
                     println("Background is gray")
+                    self.messageContainer.backgroundColor = UIColor.lightGrayColor()
                     println("Make later icon transition from translucent")
                     state = ""
                 }
                
                 if (dragDifference >= 60 && dragDifference < 249) {
                     println("Background should change to yellow")
+                    self.messageContainer.backgroundColor = UIColor.yellowColor()
+
                     println("Icon is later icon")
                     println("Later icon should start moving")
                     state = "reschedule"
@@ -77,6 +83,8 @@ class ViewController: UIViewController {
                 
                 if (dragDifference >= 260) {
                     println("Background should change to brown")
+                    self.messageContainer.backgroundColor = UIColor.brownColor()
+
                     println("List icon is swapped")
                     state = "list"
                 }
@@ -89,17 +97,22 @@ class ViewController: UIViewController {
                 println("Panning right")
 
                 dragDifference = -dragDifference
+
+
                 
                 // A point at which the later icon is translucent again?
                 
                 if (dragDifference < 60) {
                     println("Background is gray")
+                    self.messageContainer.backgroundColor = UIColor.lightGrayColor()
+
                     println("Make archive icon transition from translucent")
                     state = ""
                 }
                 
                 if (dragDifference >= 60 && dragDifference < 249) {
                     println("Background should change to green")
+                    self.messageContainer.backgroundColor = UIColor.greenColor()
                     println("Icon is archive icon")
                     println("Archive icon should start moving")
                     state = "archive"
@@ -107,6 +120,7 @@ class ViewController: UIViewController {
                 
                 if (dragDifference >= 260) {
                     println("Background should change to red")
+                    self.messageContainer.backgroundColor = UIColor.redColor()
                     println("Delete icon is swapped")
                     state = "delete"
                 }
@@ -144,7 +158,6 @@ class ViewController: UIViewController {
             
                 feedView.center = CGPoint(x: feedView.center.x, y: feedView.center.y - messageView.image!.size.height)
             }
-                
             
             if (state == "delete") {
                 println("Continue to reveal red background")
