@@ -65,6 +65,7 @@ class ViewController: UIViewController {
                 if (dragDifference < 60) {
                     println("Background is gray")
                     println("Make later icon transition from translucent")
+                    state = ""
                 }
                
                 if (dragDifference >= 60 && dragDifference < 249) {
@@ -94,6 +95,7 @@ class ViewController: UIViewController {
                 if (dragDifference < 60) {
                     println("Background is gray")
                     println("Make archive icon transition from translucent")
+                    state = ""
                 }
                 
                 if (dragDifference >= 60 && dragDifference < 249) {
