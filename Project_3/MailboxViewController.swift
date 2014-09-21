@@ -99,7 +99,10 @@ class ViewController: UIViewController {
                     println("Background is gray")
                     self.messageContainer.backgroundColor = UIColor.lightGrayColor()
                     self.rightAction.alpha = 1
-                    self.rightAction.frame.origin = CGPoint(x: 280, y: self.rightAction.frame.origin.y)
+                    
+                    UIView.animateWithDuration(0.4, animations: {
+                        self.rightAction.frame.origin = CGPoint(x: 280, y: self.rightAction.frame.origin.y)
+                    })
 
                     state = ""
                 }
@@ -107,7 +110,11 @@ class ViewController: UIViewController {
                 
                 if (dragDifference > 60 && dragDifference < 249) {
                     println("Background should change to yellow")
-                    self.messageContainer.backgroundColor = UIColor.yellowColor()
+
+                    UIView.animateWithDuration(0.2, animations: {
+                        self.messageContainer.backgroundColor = UIColor.yellowColor()
+                    })
+
 
                     println("Icon is later icon")
                     rightAction.image = UIImage(named: "later_icon.png")
@@ -121,7 +128,11 @@ class ViewController: UIViewController {
                 
                 if (dragDifference >= 260) {
                     println("Background should change to brown")
-                    self.messageContainer.backgroundColor = UIColor.brownColor()
+                    
+                    UIView.animateWithDuration(0.2, animations: {
+                        self.messageContainer.backgroundColor = UIColor.brownColor()
+                    })
+
                     self.rightAction.frame.origin = CGPoint(x: self.messageView.frame.origin.x + self.messageView.frame.width + 10, y: self.rightAction.frame.origin.y)
 
                     println("List icon is swapped")
@@ -164,14 +175,20 @@ class ViewController: UIViewController {
                     println("Background is gray")
                     self.messageContainer.backgroundColor = UIColor.lightGrayColor()
                     self.leftAction.alpha = 1
-                    self.leftAction.frame.origin = CGPoint(x: 15, y: self.leftAction.frame.origin.y)
-         
+                    
+                    UIView.animateWithDuration(0.4, animations: {
+                        self.leftAction.frame.origin = CGPoint(x: 15, y: self.leftAction.frame.origin.y)
+                    })
+                    
                     state = ""
                 }
                 
                 if (dragDifference > 60 && dragDifference < 249) {
                     println("Background should change to green")
-                    self.messageContainer.backgroundColor = UIColor.greenColor()
+                    
+                    UIView.animateWithDuration(0.2, animations: {
+                        self.messageContainer.backgroundColor = UIColor.greenColor()
+                    })
                     println("Icon is archive icon")
                     leftAction.image = UIImage(named: "archive_icon.png")
 
@@ -183,7 +200,11 @@ class ViewController: UIViewController {
                 
                 if (dragDifference >= 260) {
                     println("Background should change to red")
-                    self.messageContainer.backgroundColor = UIColor.redColor()
+
+                    UIView.animateWithDuration(0.2, animations: {
+                        self.messageContainer.backgroundColor = UIColor.redColor()
+                    })
+
                     self.leftAction.frame.origin = CGPoint(x: self.messageView.frame.origin.x - 35, y: self.leftAction.frame.origin.y)
 
                     println("Delete icon is swapped")
@@ -261,31 +282,6 @@ class ViewController: UIViewController {
     }
     }
 
-    
-    class NavigationBar: UINavigationBar {
-    
-    init(frame: CGRect) {
-    super.init(frame: frame)
-    initialise()
-    }
-    
-    init(coder aDecoder: NSCoder!){
-    super.init(coder: aDecoder)
-    initialise()
-    }
-    
-    func initialise(){
-    
-    let logo = UIImage(named: "logo");
-    let imageView = UIImageView(image:logo)
-    imageView.frame.size.width = 145;
-    imageView.frame.size.height = 33;
-    imageView.frame.origin = CGPoint(x: 2, y: 8)
-    
-    addSubview(imageView)
-    }
-    }
-    
     */
     
 }
