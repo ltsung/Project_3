@@ -91,26 +91,29 @@ class ViewController: UIViewController {
                             self.rightAction.alpha = 0
                         })
                     }
-                    self.rightAction.frame.origin = CGPoint(x: 280, y: self.rightAction.frame.origin.y)
                     
                 }
                 
                 
-                if (dragDifference >= 20 && dragDifference < 60) {
+                if (dragDifference >= 20 && dragDifference <= 60) {
                     println("Background is gray")
                     self.messageContainer.backgroundColor = UIColor.lightGrayColor()
                     self.rightAction.alpha = 1
+                    self.rightAction.frame.origin = CGPoint(x: 280, y: self.rightAction.frame.origin.y)
+
                     state = ""
                 }
 
                 
-                if (dragDifference >= 60 && dragDifference < 249) {
+                if (dragDifference > 60 && dragDifference < 249) {
                     println("Background should change to yellow")
                     self.messageContainer.backgroundColor = UIColor.yellowColor()
 
                     println("Icon is later icon")
+                    rightAction.image = UIImage(named: "later_icon.png")
+                    
                     println("Later icon should start moving")
-                    self.rightAction.frame.origin = CGPoint(x: self.messageView.frame.origin.x + self.messageView.frame.width + 5, y: self.rightAction.frame.origin.y)
+                    self.rightAction.frame.origin = CGPoint(x: self.messageView.frame.origin.x + self.messageView.frame.width + 10, y: self.rightAction.frame.origin.y)
                     
                     
                     state = "reschedule"
@@ -119,9 +122,12 @@ class ViewController: UIViewController {
                 if (dragDifference >= 260) {
                     println("Background should change to brown")
                     self.messageContainer.backgroundColor = UIColor.brownColor()
-                    self.rightAction.frame.origin = CGPoint(x: self.messageView.frame.origin.x + self.messageView.frame.width + 5, y: self.rightAction.frame.origin.y)
+                    self.rightAction.frame.origin = CGPoint(x: self.messageView.frame.origin.x + self.messageView.frame.width + 10, y: self.rightAction.frame.origin.y)
 
                     println("List icon is swapped")
+                    rightAction.image = UIImage(named: "list_icon.png")
+    
+
                     state = "list"
                 }
                 
@@ -149,26 +155,27 @@ class ViewController: UIViewController {
                             self.leftAction.alpha = 0
                         })
                     }
-                    self.leftAction.frame.origin = CGPoint(x: 15, y: self.leftAction.frame.origin.y)
                     
                 }
                 
 
                 
-                if (dragDifference > 20 && dragDifference < 60) {
+                if (dragDifference > 20 && dragDifference <= 60) {
                     println("Background is gray")
                     self.messageContainer.backgroundColor = UIColor.lightGrayColor()
                     self.leftAction.alpha = 1
+                    self.leftAction.frame.origin = CGPoint(x: 15, y: self.leftAction.frame.origin.y)
          
                     state = ""
                 }
                 
-                if (dragDifference >= 60 && dragDifference < 249) {
+                if (dragDifference > 60 && dragDifference < 249) {
                     println("Background should change to green")
                     self.messageContainer.backgroundColor = UIColor.greenColor()
                     println("Icon is archive icon")
+                    leftAction.image = UIImage(named: "archive_icon.png")
+
                     println("Archive icon should start moving")
-                    
                     self.leftAction.frame.origin = CGPoint(x: self.messageView.frame.origin.x - 35, y: self.leftAction.frame.origin.y)
 
                     state = "archive"
@@ -180,6 +187,8 @@ class ViewController: UIViewController {
                     self.leftAction.frame.origin = CGPoint(x: self.messageView.frame.origin.x - 35, y: self.leftAction.frame.origin.y)
 
                     println("Delete icon is swapped")
+                    leftAction.image = UIImage(named: "delete_icon.png")
+                    
                     state = "delete"
                 }
                 
