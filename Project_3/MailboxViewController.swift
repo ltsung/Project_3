@@ -17,10 +17,16 @@ class ViewController: UIViewController {
     @IBOutlet weak var leftAction: UIImageView!
     @IBOutlet weak var rightAction: UIImageView!
     
+    @IBOutlet weak var rescheduleView: UIImageView!
+    @IBOutlet weak var listView: UIImageView!
+    
     
     var originalImageCenter: CGPoint!
     var originalLocation: CGPoint!
     var state = ""
+    
+    
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -76,8 +82,8 @@ class ViewController: UIViewController {
                 // A point at which the later icon is translucent again?
                 
                 if (dragDifference < 20) {
-                    self.leftAction.alpha = 0;
-                    self.rightAction.alpha = 0;
+                    self.leftAction.alpha = 0
+                    self.rightAction.alpha = 0
                     
                     println("Make later icon transition from translucent")
                     
@@ -108,7 +114,7 @@ class ViewController: UIViewController {
                 }
 
                 
-                if (dragDifference > 60 && dragDifference < 249) {
+                if (dragDifference > 60 && dragDifference < 259) {
                     println("Background should change to yellow")
 
                     UIView.animateWithDuration(0.2, animations: {
@@ -151,8 +157,8 @@ class ViewController: UIViewController {
                 dragDifference = -dragDifference
                 
                 if (dragDifference < 20) {
-                    self.leftAction.alpha = 0;
-                    self.rightAction.alpha = 0;
+                    self.leftAction.alpha = 0
+                    self.rightAction.alpha = 0
                     
                     println("Make later icon transition from translucent")
                     
@@ -183,7 +189,7 @@ class ViewController: UIViewController {
                     state = ""
                 }
                 
-                if (dragDifference > 60 && dragDifference < 249) {
+                if (dragDifference > 60 && dragDifference < 259) {
                     println("Background should change to green")
                     
                     UIView.animateWithDuration(0.2, animations: {
@@ -229,29 +235,54 @@ class ViewController: UIViewController {
             
             
             if (state == "reschedule") {
+                self.leftAction.alpha = 0
                 println("Continue to reveal yellow background")
                 println("On animation complete, show resched options")
+               
+                
+                // Reset
                 messageView.center = CGPoint(x: originalImageCenter.x, y: originalImageCenter.y)
             }
             
             if (state == "list") {
+                self.leftAction.alpha = 0
+                
                 println("Continue to reveal brown background")
                 println("On animation complete, show list options")
+                
+                // Reset
                 messageView.center = CGPoint(x: originalImageCenter.x, y: originalImageCenter.y)
+            
             }
             
             if (state == "archive") {
+                self.rightAction.alpha = 0
+                
                 println("Continue to reveal green background")
-                println("On animation complete, hide message")
-            
-                feedView.center = CGPoint(x: feedView.center.x, y: feedView.center.y - messageView.image!.size.height)
+                UIView.animateWithDuration(0.2, animations: {
+                    self.messageView.frame.origin = CGPoint(x: 320, y: self.messageView.frame.origin.y)
+                    self.leftAction.frame.origin = CGPoint(x: self.messageView.frame.origin.x - 35, y: self.leftAction.frame.origin.y)
+                }){ (finished: Bool) -> Void in
+                    println("On animation complete, hide message")
+                    UIView.animateWithDuration(0.2, delay: 0.2, options: nil, animations: {
+                        self.feedView.center = CGPoint(x: self.feedView.center.x, y: self.feedView.center.y - self.messageView.image!.size.height)
+                    }, completion: nil)
+                }
             }
             
             if (state == "delete") {
+                self.rightAction.alpha = 0
+                
                 println("Continue to reveal red background")
-                println("On animation complete, hide message")
-
-                feedView.center = CGPoint(x: feedView.center.x, y: feedView.center.y - messageView.image!.size.height)
+                UIView.animateWithDuration(0.2, animations: {
+                    self.messageView.frame.origin = CGPoint(x: 320, y: self.messageView.frame.origin.y)
+                    self.leftAction.frame.origin = CGPoint(x: self.messageView.frame.origin.x - 35, y: self.leftAction.frame.origin.y)
+                }){ (finished: Bool) -> Void in
+                    println("On animation complete, hide message")
+                    UIView.animateWithDuration(0.2, delay: 0.2, options: nil, animations: {
+                        self.feedView.center = CGPoint(x: self.feedView.center.x, y: self.feedView.center.y - self.messageView.image!.size.height)
+                    }, completion: nil)
+                }
             }
             
             // Reset

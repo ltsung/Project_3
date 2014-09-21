@@ -74,8 +74,10 @@
                     <connections>
                         <outlet property="feedView" destination="T0u-SR-Xv4" id="4ej-Vm-BNk"/>
                         <outlet property="leftAction" destination="CyA-Zm-hcP" id="0Rv-4s-qEV"/>
+                        <outlet property="listView" destination="tjb-hu-d6N" id="Z7b-ln-XYf"/>
                         <outlet property="messageContainer" destination="Vji-Se-3iW" id="zen-w1-F3y"/>
                         <outlet property="messageView" destination="L3r-zE-UIT" id="Jrx-DP-3NJ"/>
+                        <outlet property="rescheduleView" destination="XLH-qK-Ztk" id="kY6-kd-1QJ"/>
                         <outlet property="rightAction" destination="ayr-uq-IPY" id="ORE-Is-t0a"/>
                         <outlet property="scrollView" destination="Dpu-59-BrQ" id="1wV-ij-n9g"/>
                     </connections>
