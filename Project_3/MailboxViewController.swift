@@ -237,21 +237,40 @@ class ViewController: UIViewController {
             if (state == "reschedule") {
                 self.leftAction.alpha = 0
                 println("Continue to reveal yellow background")
-                println("On animation complete, show resched options")
-               
+                
+
+                UIView.animateWithDuration(0.2, animations: {
+                    self.messageView.frame.origin = CGPoint(x: -320, y: self.messageView.frame.origin.y)
+                    self.rightAction.frame.origin = CGPoint(x: 15, y: self.rightAction.frame.origin.y)
+                }){ (finished: Bool) -> Void in
+                    println("On animation complete, show resched options")
+                 
+                    UIView.animateWithDuration(0.2, delay: 0.2, options: nil, animations: {
+                        self.rescheduleView.alpha = 1
+                    }, completion: nil)
+                }
                 
                 // Reset
-                messageView.center = CGPoint(x: originalImageCenter.x, y: originalImageCenter.y)
+                //messageView.center = CGPoint(x: originalImageCenter.x, y: originalImageCenter.y)
             }
             
             if (state == "list") {
                 self.leftAction.alpha = 0
                 
                 println("Continue to reveal brown background")
-                println("On animation complete, show list options")
+                UIView.animateWithDuration(0.2, animations: {
+                    self.messageView.frame.origin = CGPoint(x: -320, y: self.messageView.frame.origin.y)
+                    self.rightAction.frame.origin = CGPoint(x: 15, y: self.rightAction.frame.origin.y)
+                }){ (finished: Bool) -> Void in
+                    println("On animation complete, show list options")
+                        
+                    UIView.animateWithDuration(0.2, delay: 0.2, options: nil, animations: {
+                        self.listView.alpha = 1
+                    }, completion: nil)
+                }
                 
                 // Reset
-                messageView.center = CGPoint(x: originalImageCenter.x, y: originalImageCenter.y)
+                //messageView.center = CGPoint(x: originalImageCenter.x, y: originalImageCenter.y)
             
             }
             
@@ -291,29 +310,5 @@ class ViewController: UIViewController {
     
 
     }
-    
-    
-    /*
-    
-    @IBAction func onGoButton(sender: AnyObject) {
-    UIView.animateWithDuration(0.2, animations: { () -> Void in
-    // Animating the downward move + 3X scale
-    self.imageView.frame.origin.y = self.imageView.frame.origin.y + 250
-    self.imageView.transform = CGAffineTransformMakeScale(3, 3)
-    }) { (finished: Bool) -> Void in
-    // After the animation completes, rotate to the left 10 degrees with no animation.
-    var rotation = CGFloat(-10 * M_PI / 180)
-    self.imageView.transform = CGAffineTransformRotate(self.imageView.transform, rotation)
-    
-    // Animate the rocking head of 20 degrees, repeated infinitely.
-    UIView.animateWithDuration(0.2, delay: 0, options: UIViewAnimationOptions.Repeat | UIViewAnimationOptions.Autoreverse | UIViewAnimationOptions.AllowUserInteraction, animations: { () -> Void in
-    var rotation = CGFloat(20 * M_PI / 180)
-    self.imageView.transform = CGAffineTransformRotate(self.imageView.transform, rotation)
-    }, completion: nil)
-    }
-    }
-
-    */
-    
 }
 
