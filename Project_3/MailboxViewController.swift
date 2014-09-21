@@ -14,6 +14,8 @@ class ViewController: UIViewController {
     @IBOutlet weak var messageView: UIImageView!
     @IBOutlet weak var feedView: UIImageView!
     @IBOutlet weak var messageContainer: UIView!
+    @IBOutlet weak var leftAction: UIImageView!
+    @IBOutlet weak var rightAction: UIImageView!
     
     
     var originalImageCenter: CGPoint!
@@ -39,6 +41,8 @@ class ViewController: UIViewController {
         var location = gestureRecognizer.locationInView(view)
         var velocity = gestureRecognizer.velocityInView(view)
         var translation = gestureRecognizer.translationInView(view)
+        
+
 
         
         if (gestureRecognizer.state == UIGestureRecognizerState.Began) {
@@ -58,37 +62,68 @@ class ViewController: UIViewController {
             
             dragDifference = originalLocation.x - location.x
             
+            
+            // Do some math with this for icon to follow it
+            println("location.x \(location.x)")
+            
             println("dragDifference: \(dragDifference)")
+            
+          
             
             if (translation.x < 0.0) {
                 println("Panning left")
                 
                 // A point at which the later icon is translucent again?
                 
-                if (dragDifference < 60) {
+                if (dragDifference < 20) {
+                    self.leftAction.alpha = 0;
+                    self.rightAction.alpha = 0;
+                    
+                    println("Make later icon transition from translucent")
+                    
+                    if (self.rightAction.alpha == 0) {
+                        UIView.animateWithDuration(0.4, animations: {
+                            self.rightAction.alpha = 1
+                        })
+                    }
+                    else {
+                        UIView.animateWithDuration(0.4, animations: {
+                            self.rightAction.alpha = 0
+                        })
+                    }
+                    self.rightAction.frame.origin = CGPoint(x: 280, y: self.rightAction.frame.origin.y)
+                    
+                }
+                
+                
+                if (dragDifference >= 20 && dragDifference < 60) {
                     println("Background is gray")
                     self.messageContainer.backgroundColor = UIColor.lightGrayColor()
-                    println("Make later icon transition from translucent")
+                    self.rightAction.alpha = 1
                     state = ""
                 }
-               
+
+                
                 if (dragDifference >= 60 && dragDifference < 249) {
                     println("Background should change to yellow")
                     self.messageContainer.backgroundColor = UIColor.yellowColor()
 
                     println("Icon is later icon")
                     println("Later icon should start moving")
+                    self.rightAction.frame.origin = CGPoint(x: self.messageView.frame.origin.x + self.messageView.frame.width + 5, y: self.rightAction.frame.origin.y)
+                    
+                    
                     state = "reschedule"
                 }
                 
                 if (dragDifference >= 260) {
                     println("Background should change to brown")
                     self.messageContainer.backgroundColor = UIColor.brownColor()
+                    self.rightAction.frame.origin = CGPoint(x: self.messageView.frame.origin.x + self.messageView.frame.width + 5, y: self.rightAction.frame.origin.y)
 
                     println("List icon is swapped")
                     state = "list"
                 }
-                
                 
                 println("state \(state)")
             }
@@ -97,16 +132,34 @@ class ViewController: UIViewController {
                 println("Panning right")
 
                 dragDifference = -dragDifference
-
+                
+                if (dragDifference < 20) {
+                    self.leftAction.alpha = 0;
+                    self.rightAction.alpha = 0;
+                    
+                    println("Make later icon transition from translucent")
+                    
+                    if (self.leftAction.alpha == 0) {
+                        UIView.animateWithDuration(0.4, animations: {
+                            self.leftAction.alpha = 1
+                        })
+                    }
+                    else {
+                        UIView.animateWithDuration(0.4, animations: {
+                            self.leftAction.alpha = 0
+                        })
+                    }
+                    self.leftAction.frame.origin = CGPoint(x: 15, y: self.leftAction.frame.origin.y)
+                    
+                }
+                
 
                 
-                // A point at which the later icon is translucent again?
-                
-                if (dragDifference < 60) {
+                if (dragDifference > 20 && dragDifference < 60) {
                     println("Background is gray")
                     self.messageContainer.backgroundColor = UIColor.lightGrayColor()
-
-                    println("Make archive icon transition from translucent")
+                    self.leftAction.alpha = 1
+         
                     state = ""
                 }
                 
@@ -115,12 +168,17 @@ class ViewController: UIViewController {
                     self.messageContainer.backgroundColor = UIColor.greenColor()
                     println("Icon is archive icon")
                     println("Archive icon should start moving")
+                    
+                    self.leftAction.frame.origin = CGPoint(x: self.messageView.frame.origin.x - 35, y: self.leftAction.frame.origin.y)
+
                     state = "archive"
                 }
                 
                 if (dragDifference >= 260) {
                     println("Background should change to red")
                     self.messageContainer.backgroundColor = UIColor.redColor()
+                    self.leftAction.frame.origin = CGPoint(x: self.messageView.frame.origin.x - 35, y: self.leftAction.frame.origin.y)
+
                     println("Delete icon is swapped")
                     state = "delete"
                 }
@@ -175,17 +233,6 @@ class ViewController: UIViewController {
     
     
     /*
-
-    // Optionally initialize the property to a desired starting value
-    self.firstView.alpha = 0
-    self.secondView.alpha = 1
-    UIView.animateWithDuration(0.4, animations: {
-    // This causes first view to fade in and second view to fade out
-    self.firstView.alpha = 1
-    self.secondView.alpha = 0
-    })
-    
-    
     
     @IBAction func onGoButton(sender: AnyObject) {
     UIView.animateWithDuration(0.2, animations: { () -> Void in
@@ -205,6 +252,30 @@ class ViewController: UIViewController {
     }
     }
 
+    
+    class NavigationBar: UINavigationBar {
+    
+    init(frame: CGRect) {
+    super.init(frame: frame)
+    initialise()
+    }
+    
+    init(coder aDecoder: NSCoder!){
+    super.init(coder: aDecoder)
+    initialise()
+    }
+    
+    func initialise(){
+    
+    let logo = UIImage(named: "logo");
+    let imageView = UIImageView(image:logo)
+    imageView.frame.size.width = 145;
+    imageView.frame.size.height = 33;
+    imageView.frame.origin = CGPoint(x: 2, y: 8)
+    
+    addSubview(imageView)
+    }
+    }
     
     */
     

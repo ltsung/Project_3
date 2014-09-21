@@ -21,11 +21,11 @@
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <subviews>
                                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="archive_icon" id="CyA-Zm-hcP" userLabel="LeftAction">
-                                                <rect key="frame" x="10" y="33" width="25" height="25"/>
+                                                <rect key="frame" x="15" y="33" width="25" height="25"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             </imageView>
                                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="later_icon" id="ayr-uq-IPY" userLabel="RightAction">
-                                                <rect key="frame" x="283" y="33" width="25" height="25"/>
+                                                <rect key="frame" x="280" y="33" width="25" height="25"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             </imageView>
                                             <imageView contentMode="top" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="message" id="L3r-zE-UIT">
@@ -73,8 +73,10 @@
                     <size key="freeformSize" width="320" height="1000"/>
                     <connections>
                         <outlet property="feedView" destination="T0u-SR-Xv4" id="4ej-Vm-BNk"/>
+                        <outlet property="leftAction" destination="CyA-Zm-hcP" id="0Rv-4s-qEV"/>
                         <outlet property="messageContainer" destination="Vji-Se-3iW" id="zen-w1-F3y"/>
                         <outlet property="messageView" destination="L3r-zE-UIT" id="Jrx-DP-3NJ"/>
+                        <outlet property="rightAction" destination="ayr-uq-IPY" id="ORE-Is-t0a"/>
                         <outlet property="scrollView" destination="Dpu-59-BrQ" id="1wV-ij-n9g"/>
                     </connections>
                 </viewController>
