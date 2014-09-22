@@ -308,7 +308,38 @@ class ViewController: UIViewController {
             state = ""
         }
     
-
     }
-}
+    
+    
+    @IBAction func dismissReschedule(sender: UITapGestureRecognizer) {
 
+        println("Dismissing reschedule options")
+        UIView.animateWithDuration(0.2, animations: {
+            self.rescheduleView.alpha = 0
+        }){ (finished: Bool) -> Void in
+            println("Reset the animation")
+                
+            UIView.animateWithDuration(0.2, delay: 0.2, options: nil, animations: {
+                self.messageView.center = CGPoint(x: self.originalImageCenter.x, y: self.originalImageCenter.y)
+            }, completion: nil)
+        }
+
+    
+    
+    
+    }
+
+    @IBAction func dismissList(sender: UITapGestureRecognizer) {
+        println("Dismissing list options")
+        UIView.animateWithDuration(0.2, animations: {
+            self.listView.alpha = 0
+        }){ (finished: Bool) -> Void in
+            println("Reset the animation")
+                
+            UIView.animateWithDuration(0.2, delay: 0.2, options: nil, animations: {
+                self.messageView.center = CGPoint(x: self.originalImageCenter.x, y: self.originalImageCenter.y)
+            }, completion: nil)
+        }
+    }
+    
+}

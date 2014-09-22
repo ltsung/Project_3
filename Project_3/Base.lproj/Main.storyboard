@@ -58,13 +58,21 @@
                                 <rect key="frame" x="12" y="94" width="296" height="44"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
-                            <imageView userInteractionEnabled="NO" alpha="0.0" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="reschedule" id="XLH-qK-Ztk" userLabel="Reschedule View">
+                            <imageView alpha="0.0" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="reschedule" id="XLH-qK-Ztk" userLabel="Reschedule View">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="574"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <gestureRecognizers/>
+                                <connections>
+                                    <outletCollection property="gestureRecognizers" destination="pWb-vD-dxg" appends="YES" id="fTj-iP-UES"/>
+                                </connections>
                             </imageView>
-                            <imageView userInteractionEnabled="NO" alpha="0.0" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="list" id="tjb-hu-d6N" userLabel="List View">
+                            <imageView alpha="0.0" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="list" id="tjb-hu-d6N" userLabel="List View">
                                 <rect key="frame" x="0.0" y="-1" width="322" height="575"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <gestureRecognizers/>
+                                <connections>
+                                    <outletCollection property="gestureRecognizers" destination="NHT-e4-CEV" appends="YES" id="fyC-Uf-WgQ"/>
+                                </connections>
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
@@ -88,6 +96,16 @@
                         <action selector="onPan:" destination="BYZ-38-t0r" id="glh-5C-xEh"/>
                     </connections>
                 </panGestureRecognizer>
+                <tapGestureRecognizer id="pWb-vD-dxg">
+                    <connections>
+                        <action selector="dismissReschedule:" destination="BYZ-38-t0r" id="XRb-eI-Dlz"/>
+                    </connections>
+                </tapGestureRecognizer>
+                <tapGestureRecognizer id="NHT-e4-CEV">
+                    <connections>
+                        <action selector="dismissList:" destination="BYZ-38-t0r" id="fYf-2q-kQr"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="236" y="372"/>
         </scene>
