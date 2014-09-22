@@ -14,7 +14,7 @@ Completed user stories:
  * [x] Required: Dragging right, initial revealed background is gray.
  * [x] Required: Archive icon revealed in transparent and becomes full opague. If released, message returns to initial position
  * [x] Required: Archive icon moves with translation and background changes to green. If user commits to action, reveal green background and hides message.
- * [x] Required; Delete icon is swapped and background changes to read. If user commits to action, reveal red backgruond and hides message.
+ * [x] Required: Delete icon is swapped and background changes to read. If user commits to action, reveal red background and hides message.
  * [ ] Optional: User can pan the edge to reveal menu
  * [ ] Optional: User taps on compose
  * [ ] Optional: User taps segmened control in the title should swipe views in from the left or right
