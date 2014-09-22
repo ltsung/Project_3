@@ -81,7 +81,7 @@ class ViewController: UIViewController {
                 
                 // A point at which the later icon is translucent again?
                 
-                if (dragDifference < 20) {
+                if (dragDifference <= 20) {
                     self.leftAction.alpha = 0
                     self.rightAction.alpha = 0
                     
@@ -101,7 +101,7 @@ class ViewController: UIViewController {
                 }
                 
                 
-                if (dragDifference >= 20 && dragDifference <= 60) {
+                if (dragDifference > 20 && dragDifference <= 60) {
                     println("Background is gray")
                     self.messageContainer.backgroundColor = UIColor.lightGrayColor()
                     self.rightAction.alpha = 1
@@ -114,7 +114,7 @@ class ViewController: UIViewController {
                 }
 
                 
-                if (dragDifference > 60 && dragDifference < 259) {
+                if (dragDifference > 60 && dragDifference <= 260) {
                     println("Background should change to yellow")
 
                     UIView.animateWithDuration(0.2, animations: {
@@ -132,7 +132,7 @@ class ViewController: UIViewController {
                     state = "reschedule"
                 }
                 
-                if (dragDifference >= 260) {
+                if (dragDifference > 260) {
                     println("Background should change to brown")
                     
                     UIView.animateWithDuration(0.2, animations: {
@@ -156,7 +156,7 @@ class ViewController: UIViewController {
 
                 dragDifference = -dragDifference
                 
-                if (dragDifference < 20) {
+                if (dragDifference <= 20) {
                     self.leftAction.alpha = 0
                     self.rightAction.alpha = 0
                     
@@ -189,7 +189,7 @@ class ViewController: UIViewController {
                     state = ""
                 }
                 
-                if (dragDifference > 60 && dragDifference < 259) {
+                if (dragDifference > 60 && dragDifference <= 260) {
                     println("Background should change to green")
                     
                     UIView.animateWithDuration(0.2, animations: {
@@ -204,7 +204,7 @@ class ViewController: UIViewController {
                     state = "archive"
                 }
                 
-                if (dragDifference >= 260) {
+                if (dragDifference > 260) {
                     println("Background should change to red")
 
                     UIView.animateWithDuration(0.2, animations: {
@@ -249,9 +249,6 @@ class ViewController: UIViewController {
                         self.rescheduleView.alpha = 1
                     }, completion: nil)
                 }
-                
-                // Reset
-                //messageView.center = CGPoint(x: originalImageCenter.x, y: originalImageCenter.y)
             }
             
             if (state == "list") {
@@ -268,10 +265,6 @@ class ViewController: UIViewController {
                         self.listView.alpha = 1
                     }, completion: nil)
                 }
-                
-                // Reset
-                //messageView.center = CGPoint(x: originalImageCenter.x, y: originalImageCenter.y)
-            
             }
             
             if (state == "archive") {
